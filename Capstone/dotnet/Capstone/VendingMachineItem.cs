@@ -4,15 +4,18 @@ using System.Text;
 
 namespace Capstone
 {
-    public class VendingMachineItem
+    abstract public class VendingMachineItem
     {
+        //properties of the class VendingMachineItem
         public string Name { get; }
         public decimal Price { get; }
         public string Location { get; }
         public string Type { get; }
         public int Quantity { get; set; } = 5;
 
+        //public string Output {get; } 
 
+        //constructor requires one parameter for instantiation
         public VendingMachineItem(string vendingItemString)
         {
             string[] splitItemString = vendingItemString.Split("|");
@@ -21,20 +24,22 @@ namespace Capstone
             this.Price = decimal.Parse(splitItemString[2]);
             this.Type = splitItemString[3];
         }
-        public string PurchaseItem(int purchaseQuantity, decimal inputMoney)
+        public void PurchaseItem(int purchaseQuantity, decimal inputMoney)
         {
             if (inputMoney >= (purchaseQuantity * Price) && purchaseQuantity <= Quantity)
             {
                 Quantity = Quantity - purchaseQuantity;
-                return "Purchase succesfully completed.";
+                inputMoney -= purchaseQuantity * Price;
+                Console.WriteLine($"You purchased {purchaseQuantity} {Name}(s) for {Price.ToString("C")} a piece.");
+                Console.WriteLine($"You have {inputMoney.ToString("C")} remaining. {OutputPhrase()}");
             }
             else if (purchaseQuantity > Quantity)
             {
-                return "Sorry, product is sold out";
+                Console.WriteLine("Sorry, product is sold out");
             }
             else
             {
-                return "Insufficient funds, please insert more money";
+                Console.WriteLine("Insufficient funds, please insert more money");
             }
 
         }
@@ -45,22 +50,6 @@ namespace Capstone
             return inputMoney - (Price * purchaseQuantity); 
         }
 
-        public string OutputPhrase(string itemCode)
-        {
-            if(Type.ToLower() == "chip")
-            {
-                return "Crunch Crunch, Yum!";
-            }else if(Type.ToLower() == "candy") 
-            {
-                return "Munch Munch, Yum!";
-            }else if(Type.ToLower() == "drink")
-            {
-                return "Glug Glug, Yum!";
-            }
-            else
-            {
-                return "Chew Chew, Yum!";
-            }
-        }
+        public abstract string OutputPhrase();
     }
 }
