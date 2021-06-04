@@ -24,30 +24,13 @@ namespace Capstone
             this.Price = decimal.Parse(splitItemString[2]);
             this.Type = splitItemString[3];
         }
-        public void PurchaseItem(int purchaseQuantity, decimal inputMoney)
-        {
-            if (inputMoney >= (purchaseQuantity * Price) && purchaseQuantity <= Quantity)
-            {
-                Quantity = Quantity - purchaseQuantity;
-                inputMoney -= purchaseQuantity * Price;
-                Console.WriteLine($"You purchased {purchaseQuantity} {Name}(s) for {Price.ToString("C")} a piece.");
-                Console.WriteLine($"You have {inputMoney.ToString("C")} remaining. {OutputPhrase()}");
-            }
-            else if (purchaseQuantity > Quantity)
-            {
-                Console.WriteLine("Sorry, product is sold out");
-            }
-            else
-            {
-                Console.WriteLine("Insufficient funds, please insert more money");
-            }
 
-        }
+
 
         //other methods to calculate change coin amounts & output crunch/yum/whatever
         public decimal CalculateChange(decimal inputMoney, int purchaseQuantity)
         {
-            return inputMoney - (Price * purchaseQuantity); 
+            return inputMoney - (Price * purchaseQuantity);
         }
 
         public abstract string OutputPhrase();
