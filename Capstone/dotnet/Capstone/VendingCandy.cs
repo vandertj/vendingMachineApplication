@@ -4,11 +4,10 @@ using System.Text;
 
 namespace Capstone
 {
-    class VendingCandy : VendingMachineItem
+    public class VendingCandy : VendingMachineItem
     {
-
         public string Output { get; } = "Munch Munch, Yum!";
-        public VendingCandy(string vendingItemString) : base (vendingItemString) 
+        public VendingCandy(string vendingItemString) : base(vendingItemString)
         {
 
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Capstone
 {
-    class VendingChip : VendingMachineItem
+    public class VendingChip : VendingMachineItem
     {
         public string Output { get; }
         public VendingChip(string vendingItemString) : base(vendingItemString)

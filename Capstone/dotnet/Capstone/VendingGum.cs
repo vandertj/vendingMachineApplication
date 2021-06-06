@@ -6,7 +6,6 @@ namespace Capstone
 {
     public class VendingGum : VendingMachineItem
     {
-
         public VendingGum(string vendingItemString) : base(vendingItemString)
         {
 

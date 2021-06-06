@@ -23,7 +23,6 @@ namespace Capstone
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -61,14 +60,5 @@ namespace Capstone
             }
 
         }
-        //$"{NowDateTime()} action
-        //we need to log a line when we:
-        //1) call VendingMachine.AddMoney();
-        //2) call VendingMachine.PurchaseItem();
-        //3) call VendingMachine.ReturnCorrectChange();
-        //is this static or not?
-        //if not, what are its properties?
-        //each line of text "MM/DD/YYYY HH:MM:SS AM/PM FEED MONEY: $5.00 {addedMoney} $5.00"
-        //or Crunchie B4 $10.00 $8.50
     }
 }

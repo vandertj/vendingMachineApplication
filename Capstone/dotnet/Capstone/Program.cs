@@ -76,7 +76,7 @@ namespace Capstone
                         Menu.DisplayMainMenu();
                         userInput = Console.ReadLine();
                     }
-                   
+
                 }
                 if (userInput == "4")
                 {

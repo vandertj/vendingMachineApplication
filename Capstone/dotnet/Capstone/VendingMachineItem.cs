@@ -13,8 +13,6 @@ namespace Capstone
         public string Type { get; }
         public int Quantity { get; set; } = 5;
 
-        //public string Output {get; } 
-
         //constructor requires one parameter for instantiation
         public VendingMachineItem(string vendingItemString)
         {
@@ -24,15 +22,6 @@ namespace Capstone
             this.Price = decimal.Parse(splitItemString[2]);
             this.Type = splitItemString[3];
         }
-
-
-
-        //other methods to calculate change coin amounts & output crunch/yum/whatever
-        public decimal CalculateChange(decimal inputMoney, int purchaseQuantity)
-        {
-            return inputMoney - (Price * purchaseQuantity);
-        }
-
         public abstract string OutputPhrase();
     }
 }

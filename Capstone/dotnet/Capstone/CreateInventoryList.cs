@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Capstone
 {
-    static class CreateInventoryList
+    public static class CreateInventoryList
     {
         //C:\Users\Student\workspace\module1-capstone-c-team-1\Capstone\dotnet\
         static string directory = @"C:\Users\Student\workspace\module1-capstone-c-team-1\Capstone\dotnet\";
@@ -18,7 +18,7 @@ namespace Capstone
             {
                 using (StreamReader sr = new StreamReader(fullInputPath))
                 {
-                 
+
                     while (!sr.EndOfStream)
                     {
                         //for each line, creating an object of a subclass of "VendingMachineItem"

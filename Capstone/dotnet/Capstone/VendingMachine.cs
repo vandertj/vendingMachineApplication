@@ -6,12 +6,11 @@ namespace Capstone
 {
     public class VendingMachine
     {
-
-
-        //properties of a vending machine: inventory list, balance
+        //vending machine properties include balance & inventory
         public decimal Balance { get; set; } = 0M;
         public List<VendingMachineItem> Inventory { get; private set; } = new List<VendingMachineItem>();
 
+        //VendingMachine can't be instantiated w/o a list of objects of class VendingMachineItem
         public VendingMachine(List<VendingMachineItem> listOfVendingMachineItems)
         {
             Inventory = listOfVendingMachineItems;
@@ -33,8 +32,7 @@ namespace Capstone
                 }
             }
         }
-
-        //method to compare if selected item location is valid
+        //method to check if selected item location is valid
         public bool CheckIfItemValid(string chosenItem)
         {
             List<string> listOfVendingMachineCodes = new List<string>();
@@ -54,7 +52,7 @@ namespace Capstone
         public void AddMoney(decimal addedMoney)
         {
             Balance += addedMoney;
-            Console.WriteLine($"Current Balance: {Balance.ToString("C")}");
+            Console.WriteLine($"Current Balance: {Balance:C}");
             Console.WriteLine();
             Logging.FeedMoneyLog(addedMoney, Balance);
         }
@@ -84,9 +82,11 @@ namespace Capstone
                 numNickels++;
                 Balance -= nickel;
             }
-            Console.WriteLine($"Your change is {numQuarters} quarter(s), {numDimes} dime(s), and {numNickels} nickel(s)");
+            string outputPhrase = $"Your change is {numQuarters} quarter(s), {numDimes} dime(s), and {numNickels} nickel(s)";
+            Console.WriteLine(outputPhrase);
             Logging.ReturnChangeLog(Balance, oldBalance);
         }
+        //Method to make purchase, contingent on inventory & sufficient funds; successful purchase lowers balance
         public bool PurchaseItem(int purchaseQuantity, string chosenItem)
         {
             foreach (VendingMachineItem item in Inventory)
@@ -98,8 +98,8 @@ namespace Capstone
                         item.Quantity = item.Quantity - purchaseQuantity;
                         decimal oldBalance = Balance;
                         Balance -= purchaseQuantity * item.Price;
-                        Console.WriteLine($"You purchased {purchaseQuantity} {item.Name}(s) for {item.Price.ToString("C")} a piece.");
-                        Console.WriteLine($"You have {Balance.ToString("C")} remaining. {item.OutputPhrase()}");
+                        Console.WriteLine($"You purchased {purchaseQuantity} {item.Name}(s) for {item.Price:C} a piece.");
+                        Console.WriteLine($"You have {Balance:C} remaining. {item.OutputPhrase()}");
                         Logging.PurchaseItemLog(item.Name, purchaseQuantity, item.Location, item.Price, oldBalance, Balance);
                         return true;
                     }
@@ -116,8 +116,6 @@ namespace Capstone
                 }
             }
             return false;
-
         }
-
     }
 }
